@@ -8,22 +8,16 @@ DATA_PATH=crossre_data
 # DOMAIN=DOMAIN
 # domains: news politics science music literature ai
 LM='bert-base-cased'
-# SEEDS=( 4012 5096 8878 8857 9908 )
-SEEDS=( 4012 )
-
+SEEDS=( 4012 5096 8878 8857 9908 )
 
 domains='
     news
+    politics
+    science
+    music
+    literature
+    ai
 '
-
-# domains='
-#     news
-#     politics
-#     science
-#     music
-#     literature
-#     ai
-# '
 
 for DOMAIN in $domains; do
   echo "Running experiments on domain: ${DOMAIN}"

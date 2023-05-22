@@ -12,6 +12,10 @@ from src.preprocessing import prepare_data
 from src.classification import load_classifier
 from src.classification.embeddings import TransformerEmbeddings
 
+# # added by Jannik to remove the stupid bert-base-cased info
+from transformers import logging as lg
+lg.set_verbosity_error()
+
 load_dotenv()
 
 def parse_arguments():
@@ -216,13 +220,8 @@ if __name__ == '__main__':
     # load classifier and loss constructors based on identifier
     classifier_constructor, loss_constructor = load_classifier()
 
-    hidden_dim = 128    
-    num_layers = 2    
-    # setup classifiers    
-    classifier = classifier_constructor(emb_model=embedding_model,        label_types=label_types.keys(),        hidden_dim=hidden_dim,        num_layers=num_layers,    )
-
-    # old setup classifiers
-    # classifier = classifier_constructor(emb_model=embedding_model, label_types=label_types.keys())
+    # setup classifiers
+    classifier = classifier_constructor(emb_model=embedding_model, label_types=label_types.keys())
     logging.info(f"Using classifier: {classifier}")
 
     # load pre-trained model for prediction
