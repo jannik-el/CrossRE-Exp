@@ -2,7 +2,7 @@
 
 EXP_PATH=$1
 
-DATA_PATH=crossre_data
+DATA_PATH=combined_data
 # EXP_PATH=<PATH TO EXPERIMENT FOLDER>
 
 # DOMAIN=DOMAIN
@@ -11,12 +11,7 @@ LM='bert-base-cased'
 SEEDS=( 4012 5096 8878 8857 9908 )
 
 domains='
-    news
-    politics
-    science
-    music
-    literature
-    ai
+    combined
 '
 
 for DOMAIN in $domains; do

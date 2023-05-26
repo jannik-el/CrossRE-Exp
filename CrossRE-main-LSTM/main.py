@@ -30,7 +30,7 @@ def parse_arguments():
     arg_parser.add_argument('-po', '--prediction_only', action='store_true', default=False, help='Set flag to run prediction on the validation data and exit (default: False)')
 
     arg_parser.add_argument('-e', '--epochs', type=int, default=50, help='Maximum number of epochs (default: 50)')
-    arg_parser.add_argument('-bs', '--batch_size', type=int, default=1, help='Maximum number of sentences per batch (default: 32)')
+    arg_parser.add_argument('-bs', '--batch_size', type=int, default=16, help='Maximum number of sentences per batch (default: 32)')
     arg_parser.add_argument('-lr', '--learning_rate', type=float, default=2e-5, help='Learning rate (default: 2e-5)')
     arg_parser.add_argument('-es', '--early_stop', type=int, default=3, help='Maximum number of epochs without improvement (default: 3)')
     arg_parser.add_argument('-rs', '--seed', type=int, help='Seed for probabilistic components')

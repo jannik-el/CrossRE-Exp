@@ -1,4 +1,5 @@
 #!/bin/bash
+# sed -i -e 's/\r$//' run.sh
 
 EXP_PATH=$1
 
@@ -25,7 +26,7 @@ for DOMAIN in $domains; do
   for rs in "${!SEEDS[@]}"; do
     echo "Experiment on random seed ${SEEDS[$rs]}."
 
-    exp_dir=$EXP_PATH/rs${SEEDS[$rs]}
+    exp_dir=$EXP_PATH/${DOMAIN}/rs${SEEDS[$rs]}
     # check if experiment already exists
     if [ -f "$exp_dir/best.pt" ]; then
       echo "[Warning] Experiment '$exp_dir' already exists. Not retraining."
