@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 from src.classification.embeddings import get_marker_embeddings
+import numpy as np
 
 
 #
@@ -61,6 +62,8 @@ class EmbeddingClassifier(nn.Module):
         # Create a new tensor to store the result
         data_ids = torch.zeros_like(att_tokens)
         data_ids = torch.zeros((att_tokens.size(0), att_tokens.size(1), 768))
+        
+        print(data_ids.shape)
 
         if torch.cuda.is_available():
             data_ids = data_ids.cuda()
@@ -72,10 +75,12 @@ class EmbeddingClassifier(nn.Module):
         for i in range(att_tokens.size(0)):
             for j in range(att_tokens.size(1)):
                 if att_tokens[i, j] == 1:
+                    # temp = dataset_embeds[domain_ids[i]]
                     # data_ids[i, j] = dataset_embeds[i]
                     data_ids[i, j] = dataset_embeds[domain_ids[i]]
 
-        # print("Data ids shape: ", data_ids.shape)
+        print(dataset_embeds.shape)
+        print("Data ids shape: ", data_ids.shape)
         # print("Token ids shape: ", emb_tokens.shape)
 
         emb_tokens = data_ids + emb_tokens
@@ -83,13 +88,6 @@ class EmbeddingClassifier(nn.Module):
         if torch.cuda.is_available():
             emb_tokens = emb_tokens.cuda()
 
-        ###### TODO
-        # dataset_embeds = dataset_embedder(data_ids)
-        #  parameters['inputs_embeds'] = word_embeds+dataset_embeds
-
-        # for i in sentences:
-
-        # prepare sentence embedding tensor (batch_size, emb_dim)
 
         emb_sentences = torch.zeros(
             (emb_tokens.shape[0], emb_tokens.shape[2] * 2), device=emb_tokens.device

@@ -8,7 +8,9 @@ DATA_PATH=crossre_data
 # DOMAIN=DOMAIN
 # domains: news politics science music literature ai
 LM='bert-base-cased'
-SEEDS=( 4012 5096 8878 8857 9908 )
+# SEEDS=( 4012 5096 8878 8857 9908 )
+SEEDS=( 4012 )
+
 
 domains='
     news

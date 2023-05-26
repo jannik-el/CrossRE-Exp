@@ -42,9 +42,13 @@ class EmbeddingClassifier(nn.Module):
 
         # prepare sentence embedding tensor (batch_size, emb_dim)
         emb_sentences = torch.zeros((emb_tokens.shape[0], emb_tokens.shape[2] * 2), device=emb_tokens.device)
+        
         # iterate over sentences and pool relevant tokens
         for sidx in range(emb_tokens.shape[0]):
             emb_sentences[sidx, :] = self._emb_pooling(emb_tokens[sidx, :torch.sum(att_tokens[sidx]), :], encodings[sidx], entities_1[sidx], entities_2[sidx])
+
+        print(emb_sentences)
+        print(emb_sentences.shape)
 
         # set embedding attention mask to cover each sentence embedding
         att_sentences = torch.ones((att_tokens.shape[0], 1), dtype=torch.bool)

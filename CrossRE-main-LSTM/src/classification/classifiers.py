@@ -12,7 +12,11 @@ class EmbeddingClassifier(nn.Module):
         self._label_types = label_types
 
         # Add BiLSTM layer
+<<<<<<< HEAD
         hidden_size = 768  # Choose an appropriate hidden size
+=======
+        hidden_size = 768 
+>>>>>>> cfb279aabbe76a019786d4ea2a6cee948623abef
         self.bilstm = nn.LSTM(emb_model.emb_dim * 2, hidden_size, bidirectional=True)
 
         if torch.cuda.is_available():
